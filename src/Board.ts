@@ -28,20 +28,22 @@ export class Board {
           continue
         }
 
-        if (i < 0 || j < 0) {
-          neighbors.push(Cell.dead())
-          continue
-        }
-
-        if (i >= this.board.length || j >= this.board.length) {
-          neighbors.push(Cell.dead())
-          continue
-        }
-
-        neighbors.push(this.board[i][j])
+        neighbors.push(this.getCellAt(i, j))
       }
     }
 
     return neighbors
+  }
+
+  private getCellAt(i: number, j: number) {
+    if (i < 0 || j < 0) {
+      return Cell.dead()
+    }
+
+    if (i >= this.board.length || j >= this.board.length) {
+      return Cell.dead()
+    }
+
+    return this.board[i][j]
   }
 }
