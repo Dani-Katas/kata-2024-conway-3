@@ -33,6 +33,11 @@ export class Board {
           continue
         }
 
+        if (i >= this.board.length || j >= this.board.length) {
+          neighbors.push(Cell.dead())
+          continue
+        }
+
         neighbors.push(this.board[i][j])
       }
     }

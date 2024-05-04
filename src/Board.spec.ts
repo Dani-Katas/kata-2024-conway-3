@@ -85,5 +85,17 @@ describe("Board", () => {
 
       expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
     })
+
+    it("retrieves dead cells if overflows the board on positive index", () => {
+      const board = new Board([
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+      ])
+
+      const neighbors: Cell[] = board.getNeighbors(2, 2)
+
+      expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
+    })
   })
 })
