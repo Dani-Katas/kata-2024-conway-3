@@ -19,8 +19,8 @@ export class Board {
     return new Board(this.board.map((r) => r.map((cell) => callback(cell, []))))
   }
 
-  getNeighbors(row: number, column: number) {
-    const neighbors: Cell[] = []
+  getNeighborsCoordinates(row: number, column: number): Array<[number, number]> {
+    const coordinates: Array<[number, number]> = []
 
     for (let i = row - 1; i <= row + 1; i++) {
       for (let j = column - 1; j <= column + 1; j++) {
@@ -28,11 +28,15 @@ export class Board {
           continue
         }
 
-        neighbors.push(this.getCellAt(i, j))
+        coordinates.push([i, j])
       }
     }
 
-    return neighbors
+    return coordinates
+  }
+
+  getNeighbors(row: number, column: number) {
+    return this.getNeighborsCoordinates(row, column).map(([i, j]) => this.getCellAt(i, j))
   }
 
   private getCellAt(i: number, j: number) {
