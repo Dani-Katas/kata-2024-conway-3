@@ -14,6 +14,6 @@ export class Board {
   }
 
   map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
-    return new Board(this.board.map(r => r.map((cell) => callback(cell, []))))
+    return new Board(this.board.map(r => r.map((cell) => callback(Cell.create(false), []))))
   }
 }
