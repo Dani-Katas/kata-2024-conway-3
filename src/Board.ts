@@ -17,7 +17,11 @@ export class Board {
   }
 
   map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
-    return new Board(this.board.map((r) => r.map((cell) => callback(cell, []))))
+    return new Board(
+      this.board.map((r, row) =>
+        r.map((cell, column) => callback(cell, this.getNeighbors(Coordinates.at(row, column)))),
+      ),
+    )
   }
 
   getNeighbors(coordinates: Coordinates) {

@@ -29,6 +29,24 @@ describe("Board", () => {
 
       expect(spy).toHaveBeenCalledWith(Cell.alive())
     })
+
+    it("sends the neighbors to the callback", () => {
+      const board = new Board([[Cell.alive()]])
+      const spy = vi.fn()
+
+      board.map((cell, neighbors) => spy(neighbors))
+
+      expect(spy).toHaveBeenCalledWith([
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+      ])
+    })
   })
 
   describe("getNeighbors", () => {
