@@ -2,6 +2,8 @@ import { Cell } from "./Cell.js"
 
 export class Neighbors {
   constructor(cells: Cell[]) {
-    throw Error("There bust be 8 neighbors")
+    if (cells.length < 8) {
+      throw Error("There bust be 8 neighbors")
+    }
   }
 }

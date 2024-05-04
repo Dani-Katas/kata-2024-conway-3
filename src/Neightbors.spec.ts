@@ -8,4 +8,19 @@ describe("Neighbors", () => {
 
     expect(() => new Neighbors(cells)).toThrow()
   })
+
+  it("does not throw with 8 neighbors", () => {
+    const cells = [
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+    ]
+
+    expect(() => new Neighbors(cells)).not.toThrow()
+  })
 })
