@@ -1,10 +1,14 @@
 export class Cell {
+  constructor(private readonly _isAlive: boolean) {
+
+  }
+
 
   static create(isAlive: boolean): Cell {
-    return new Cell()
+    return new Cell(isAlive)
   }
 
   isAlive() {
-    return true;
+    return this._isAlive
   }
 }
