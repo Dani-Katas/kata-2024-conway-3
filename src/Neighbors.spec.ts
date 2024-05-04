@@ -41,10 +41,10 @@ describe("Neighbors", () => {
   })
 
   it("counts the amount of dead cells", () => {
-    const neighbors = Neighbors.allDead()
+    const neighbors = Neighbors.allAlive()
 
     const deadAmount = neighbors.deadAmount()
 
-    expect(deadAmount).toBe(8)
+    expect(deadAmount).toBe(0)
   })
 })
