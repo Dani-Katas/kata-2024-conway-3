@@ -23,4 +23,20 @@ describe("Neighbors", () => {
 
     expect(() => new Neighbors(cells)).not.toThrow()
   })
+
+  it("throws with 9 neighbors", () => {
+    const cells = [
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+      Cell.dead(),
+    ]
+
+    expect(() => new Neighbors(cells)).toThrow()
+  })
 })
