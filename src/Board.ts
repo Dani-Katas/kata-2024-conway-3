@@ -2,7 +2,7 @@ import { Cell } from "./Cell.js"
 import { Coordinates } from "./Coordinates.js"
 
 export class Board {
-  private cells: Cell[][]
+  private readonly cells: Cell[][]
 
   public constructor(board: boolean[][] | Cell[][]) {
     this.cells = board.map((row) =>
