@@ -8,6 +8,6 @@ export class Board {
   }
 
   map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
-    throw new Error("Method not implemented.")
+    return new Board(this.board.map(r => r.map((cell) => false)))
   }
 }
