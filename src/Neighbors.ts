@@ -34,6 +34,6 @@ export class Neighbors {
   }
 
   deadAmount() {
-    return this.cells.filter((cell) => !cell.isAlive()).length
+    return this.cells.filter((cell) => cell.isDead()).length
   }
 }

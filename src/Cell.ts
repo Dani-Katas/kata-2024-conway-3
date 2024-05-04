@@ -1,14 +1,12 @@
 export class Cell {
-  constructor(private readonly _isAlive: boolean) {
-
-  }
+  constructor(private readonly _isAlive: boolean) {}
 
   static alive() {
-    return new Cell(true);
+    return new Cell(true)
   }
 
   static dead() {
-    return new Cell(false);
+    return new Cell(false)
   }
 
   static create(isAlive: boolean): Cell {
@@ -17,5 +15,9 @@ export class Cell {
 
   isAlive() {
     return this._isAlive
+  }
+
+  isDead() {
+    return !this._isAlive
   }
 }
