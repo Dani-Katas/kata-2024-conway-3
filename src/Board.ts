@@ -20,8 +20,7 @@ export class Board {
     return new Board(this.board.map((r) => r.map((cell) => callback(cell, []))))
   }
 
-  getNeighbors(row: number, column: number) {
-    const coordinates = new Coordinates(row, column)
+  getNeighbors(coordinates: Coordinates) {
     return coordinates.getNeighbors().map((coordinates) => coordinates.getFrom(this.board))
   }
 }

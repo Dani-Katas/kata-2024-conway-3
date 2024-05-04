@@ -1,6 +1,7 @@
-import { describe, it, expect, vi } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { Board } from "./Board.js"
 import { Cell } from "./Cell.js"
+import { Coordinates } from "./Coordinates.js"
 
 describe("Board", () => {
   describe("map", () => {
@@ -38,7 +39,7 @@ describe("Board", () => {
         [Cell.dead(), Cell.dead(), Cell.dead()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(1, 1)
+      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(1, 1))
 
       expect(neighbors).toEqual([
         Cell.dead(),
@@ -60,7 +61,7 @@ describe("Board", () => {
         [Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(2, 2)
+      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(2, 2))
 
       expect(neighbors).toEqual([
         Cell.dead(),
@@ -81,7 +82,7 @@ describe("Board", () => {
         [Cell.alive(), Cell.alive(), Cell.alive()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(0, 0)
+      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(0, 0))
 
       expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
     })
@@ -93,7 +94,7 @@ describe("Board", () => {
         [Cell.alive(), Cell.alive(), Cell.alive()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(2, 2)
+      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(2, 2))
 
       expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
     })
