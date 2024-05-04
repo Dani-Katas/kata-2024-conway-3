@@ -51,5 +51,27 @@ describe("Board", () => {
         Cell.dead(),
       ])
     })
+
+    it("retrieves the neighbors in a bigger board", () => {
+      const board = new Board([
+        [Cell.alive(), Cell.dead(), Cell.dead(), Cell.dead()],
+        [Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()],
+        [Cell.dead(), Cell.dead(), Cell.alive(), Cell.dead()],
+        [Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()],
+      ])
+
+      const neighbors: Cell[] = board.getNeighbors(2, 2)
+
+      expect(neighbors).toEqual([
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+      ])
+    })
   })
 })

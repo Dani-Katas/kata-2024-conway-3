@@ -22,8 +22,8 @@ export class Board {
   getNeighbors(row: number, column: number) {
     const neighbors: Cell[] = []
 
-    for (let i = 0; i <= 2; i++) {
-      for (let j = 0; j <= 2; j++) {
+    for (let i = row - 1; i <= row + 1; i++) {
+      for (let j = column - 1; j <= column + 1; j++) {
         if (i === row && j === column) {
           continue
         }
