@@ -19,4 +19,22 @@ describe("GameOfLife", () => {
       ]),
     )
   })
+
+  it("keeps statics if everyone have two neighbors", () => {
+    const gameOfLife = new GameOfLife([
+      [true, false, false],
+      [true, true, false],
+      [false, false, false],
+    ])
+
+    gameOfLife.nextGen()
+
+    expect(gameOfLife).toEqual(
+      new GameOfLife([
+        [true, false, false],
+        [true, true, false],
+        [false, false, false],
+      ]),
+    )
+  })
 })
