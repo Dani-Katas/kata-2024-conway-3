@@ -73,5 +73,17 @@ describe("Board", () => {
         Cell.dead(),
       ])
     })
+
+    it("retrieves dead cells if overflows the board on negative index", () => {
+      const board = new Board([
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+      ])
+
+      const neighbors: Cell[] = board.getNeighbors(0, 0)
+
+      expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
+    })
   })
 })

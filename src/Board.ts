@@ -28,6 +28,11 @@ export class Board {
           continue
         }
 
+        if (i < 0 || j < 0) {
+          neighbors.push(Cell.dead())
+          continue
+        }
+
         neighbors.push(this.board[i][j])
       }
     }
