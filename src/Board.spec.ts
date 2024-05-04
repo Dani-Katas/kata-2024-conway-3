@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest"
 import { Board } from "./Board.js"
 import { Cell } from "./Cell.js"
 import { Coordinates } from "./Coordinates.js"
+import { Neighbors } from "./Neighbors.js"
 
 describe("Board", () => {
   describe("map", () => {
@@ -36,16 +37,7 @@ describe("Board", () => {
 
       board.map((cell, neighbors) => spy(neighbors))
 
-      expect(spy).toHaveBeenCalledWith([
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-      ])
+      expect(spy).toHaveBeenCalledWith(Neighbors.allDead())
     })
   })
 
@@ -57,18 +49,9 @@ describe("Board", () => {
         [Cell.dead(), Cell.dead(), Cell.dead()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(1, 1))
+      const neighbors = board.getNeighbors(Coordinates.at(1, 1))
 
-      expect(neighbors).toEqual([
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-      ])
+      expect(neighbors).toEqual(Neighbors.allDead())
     })
 
     it("retrieves the neighbors in a bigger board", () => {
@@ -79,18 +62,9 @@ describe("Board", () => {
         [Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(2, 2))
+      const neighbors = board.getNeighbors(Coordinates.at(2, 2))
 
-      expect(neighbors).toEqual([
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-        Cell.dead(),
-      ])
+      expect(neighbors).toEqual(Neighbors.allDead())
     })
 
     it("retrieves dead cells if overflows the board on negative index", () => {
@@ -100,9 +74,9 @@ describe("Board", () => {
         [Cell.alive(), Cell.alive(), Cell.alive()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(0, 0))
+      const neighbors = board.getNeighbors(Coordinates.at(0, 0))
 
-      expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
+      expect(neighbors.deadAmount()).toBe(5)
     })
 
     it("retrieves dead cells if overflows the board on positive index", () => {
@@ -112,9 +86,9 @@ describe("Board", () => {
         [Cell.alive(), Cell.alive(), Cell.alive()],
       ])
 
-      const neighbors: Cell[] = board.getNeighbors(Coordinates.at(2, 2))
+      const neighbors = board.getNeighbors(Coordinates.at(2, 2))
 
-      expect(neighbors.filter((cell) => !cell.isAlive())).toHaveLength(5)
+      expect(neighbors.deadAmount()).toBe(5)
     })
   })
 })

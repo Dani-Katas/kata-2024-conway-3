@@ -1,5 +1,6 @@
 import { Cell } from "./Cell.js"
 import { Coordinates } from "./Coordinates.js"
+import { Neighbors } from "./Neighbors.js"
 
 export class Board {
   private readonly cells: Cell[][]
@@ -8,7 +9,7 @@ export class Board {
     this.cells = cells
   }
 
-  map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
+  map(callback: (cell: Cell, neighbors: Neighbors) => Cell): Board {
     const cells = this.cells.map((r, row) =>
       r.map((cell, column) => callback(cell, this.getNeighbors(Coordinates.at(row, column)))),
     )
@@ -16,6 +17,8 @@ export class Board {
   }
 
   getNeighbors(coordinates: Coordinates) {
-    return coordinates.getNeighbors().map((coordinates) => coordinates.getFrom(this.cells))
+    const cells = coordinates.getNeighbors().map((coordinates) => coordinates.getFrom(this.cells))
+
+    return new Neighbors(cells)
   }
 }
