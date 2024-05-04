@@ -39,4 +39,12 @@ describe("Neighbors", () => {
 
     expect(() => new Neighbors(cells)).toThrow()
   })
+
+  it("counts the amount of dead cells", () => {
+    const neighbors = Neighbors.allDead()
+
+    const deadAmount = neighbors.deadAmount()
+
+    expect(deadAmount).toBe(8)
+  })
 })
