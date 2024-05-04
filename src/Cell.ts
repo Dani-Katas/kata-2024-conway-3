@@ -3,6 +3,13 @@ export class Cell {
 
   }
 
+  static alive() {
+    return new Cell(true);
+  }
+
+  static dead() {
+    return new Cell(false);
+  }
 
   static create(isAlive: boolean): Cell {
     return new Cell(isAlive)
