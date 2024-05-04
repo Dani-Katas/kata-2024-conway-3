@@ -4,7 +4,7 @@ import { Cell } from "./Cell.js"
 
 describe("Board", () => {
   describe("map", () => {
-    it("can map each cell", () => {
+    it("changes to a dead cell", () => {
       const board = new Board([[Cell.alive()]])
 
       const newBoard = board.map(() => Cell.dead())
@@ -12,7 +12,7 @@ describe("Board", () => {
       expect(newBoard).toEqual(new Board([[Cell.dead()]]))
     })
 
-    it("map method calls the callback", () => {
+    it("changes to an alive cell", () => {
       const board = new Board([[Cell.dead()]])
 
       const newBoard = board.map(() => Cell.alive())
