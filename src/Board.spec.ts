@@ -29,4 +29,27 @@ describe("Board", () => {
       expect(spy).toHaveBeenCalledWith(Cell.alive())
     })
   })
+
+  describe("getNeighbors", () => {
+    it("retrieves the neighbors of the given index", () => {
+      const board = new Board([
+        [Cell.dead(), Cell.dead(), Cell.dead()],
+        [Cell.dead(), Cell.dead(), Cell.dead()],
+        [Cell.dead(), Cell.dead(), Cell.dead()],
+      ])
+
+      const neighbors: Cell[] = board.getNeighbors(1, 1)
+
+      expect(neighbors).toEqual([
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+        Cell.dead(),
+      ])
+    })
+  })
 })
