@@ -20,15 +20,18 @@ export class Board {
   }
 
   getNeighbors(row: number, column: number) {
-    return [
-      this.board[0][0],
-      this.board[0][1],
-      this.board[0][2],
-      this.board[1][0],
-      this.board[1][2],
-      this.board[2][0],
-      this.board[2][1],
-      this.board[2][2],
-    ]
+    const neighbors: Cell[] = []
+
+    for (let i = 0; i <= 2; i++) {
+      for (let j = 0; j <= 2; j++) {
+        if (i === row && j === column) {
+          continue
+        }
+
+        neighbors.push(this.board[i][j])
+      }
+    }
+
+    return neighbors
   }
 }
