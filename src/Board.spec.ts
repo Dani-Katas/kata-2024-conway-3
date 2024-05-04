@@ -51,5 +51,26 @@ describe("Board", () => {
         Cell.dead(),
       ])
     })
+
+    it("retrieves the neighbors of the given index 2", () => {
+      const board = new Board([
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.dead(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.alive()],
+      ])
+
+      const neighbors: Cell[] = board.getNeighbors(1, 1)
+
+      expect(neighbors).toEqual([
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+        Cell.alive(),
+      ])
+    })
   })
 })

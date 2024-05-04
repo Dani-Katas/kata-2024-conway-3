@@ -20,6 +20,15 @@ export class Board {
   }
 
   getNeighbors(row: number, column: number) {
-    return [Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()]
+    return [
+      this.board[0][0],
+      this.board[0][1],
+      this.board[0][2],
+      this.board[1][0],
+      this.board[1][2],
+      this.board[2][0],
+      this.board[2][1],
+      this.board[2][2],
+    ]
   }
 }
