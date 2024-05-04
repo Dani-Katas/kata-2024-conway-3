@@ -15,9 +15,9 @@ export class Coordinates {
   getNeighbors(): Array<Coordinates> {
     const coordinates: Array<Coordinates> = []
 
-    for (let i = this.getX() - 1; i <= this.getX() + 1; i++) {
-      for (let j = this.getY() - 1; j <= this.getY() + 1; j++) {
-        if (i === this.getX() && j === this.getY()) {
+    for (let i = this.x - 1; i <= this.x + 1; i++) {
+      for (let j = this.y - 1; j <= this.y + 1; j++) {
+        if (i === this.x && j === this.y) {
           continue
         }
 
