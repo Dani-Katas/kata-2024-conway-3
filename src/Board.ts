@@ -4,16 +4,8 @@ import { Coordinates } from "./Coordinates.js"
 export class Board {
   private readonly cells: Cell[][]
 
-  public constructor(board: boolean[][] | Cell[][]) {
-    this.cells = board.map((row) =>
-      row.map((isAlive) => {
-        if (isAlive instanceof Cell) {
-          return isAlive
-        }
-
-        return Cell.create(isAlive)
-      }),
-    )
+  public constructor(cells: Cell[][]) {
+    this.cells = cells
   }
 
   map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
