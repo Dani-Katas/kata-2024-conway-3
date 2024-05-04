@@ -1,0 +1,13 @@
+import { Cell } from "./Cell.js"
+
+export class Board {
+  private board: Cell[][]
+
+  public constructor(board: boolean[][]) {
+    this.board = board.map((row) => row.map((isAlive) => Cell.create(isAlive)))
+  }
+
+  map(callback: (cell: Cell, neighbors: Cell[]) => Cell): Board {
+    throw new Error("Method not implemented.")
+  }
+}
