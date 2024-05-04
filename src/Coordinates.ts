@@ -1,16 +1,10 @@
+import { Cell } from "./Cell.js"
+
 export class Coordinates {
   constructor(
     private readonly x: number,
     private readonly y: number,
   ) {}
-
-  getX() {
-    return this.x
-  }
-
-  getY() {
-    return this.y
-  }
 
   getNeighbors(): Array<Coordinates> {
     const coordinates: Array<Coordinates> = []
@@ -26,5 +20,17 @@ export class Coordinates {
     }
 
     return coordinates
+  }
+
+  getFrom(board: Cell[][]) {
+    if (this.x < 0 || this.y < 0) {
+      return Cell.dead()
+    }
+
+    if (this.x >= board.length || this.y >= board.length) {
+      return Cell.dead()
+    }
+
+    return board[this.x][this.y]
   }
 }

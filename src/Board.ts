@@ -22,18 +22,6 @@ export class Board {
 
   getNeighbors(row: number, column: number) {
     const coordinates = new Coordinates(row, column)
-    return coordinates.getNeighbors().map((coordinates) => this.getCellAt(coordinates))
-  }
-
-  private getCellAt(coordinates: Coordinates) {
-    if (coordinates.getX() < 0 || coordinates.getY() < 0) {
-      return Cell.dead()
-    }
-
-    if (coordinates.getX() >= this.board.length || coordinates.getY() >= this.board.length) {
-      return Cell.dead()
-    }
-
-    return this.board[coordinates.getX()][coordinates.getY()]
+    return coordinates.getNeighbors().map((coordinates) => coordinates.getFrom(this.board))
   }
 }
