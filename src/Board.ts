@@ -1,5 +1,20 @@
 import { Cell } from "./Cell.js"
 
+class Coordinates {
+  constructor(
+    private readonly x: number,
+    private readonly y: number,
+  ) {}
+
+  getX() {
+    return this.x
+  }
+
+  getY() {
+    return this.y
+  }
+}
+
 export class Board {
   private board: Cell[][]
 
@@ -19,16 +34,16 @@ export class Board {
     return new Board(this.board.map((r) => r.map((cell) => callback(cell, []))))
   }
 
-  getNeighborsCoordinates(row: number, column: number): Array<[number, number]> {
-    const coordinates: Array<[number, number]> = []
+  getNeighborsCoordinates(coordinate: Coordinates): Array<Coordinates> {
+    const coordinates: Array<Coordinates> = []
 
-    for (let i = row - 1; i <= row + 1; i++) {
-      for (let j = column - 1; j <= column + 1; j++) {
-        if (i === row && j === column) {
+    for (let i = coordinate.getX() - 1; i <= coordinate.getX() + 1; i++) {
+      for (let j = coordinate.getY() - 1; j <= coordinate.getY() + 1; j++) {
+        if (i === coordinate.getX() && j === coordinate.getY()) {
           continue
         }
 
-        coordinates.push([i, j])
+        coordinates.push(new Coordinates(i, j))
       }
     }
 
@@ -36,18 +51,19 @@ export class Board {
   }
 
   getNeighbors(row: number, column: number) {
-    return this.getNeighborsCoordinates(row, column).map(([i, j]) => this.getCellAt(i, j))
+    const coordinates = new Coordinates(row, column)
+    return this.getNeighborsCoordinates(coordinates).map((coordinates) => this.getCellAt(coordinates))
   }
 
-  private getCellAt(i: number, j: number) {
-    if (i < 0 || j < 0) {
+  private getCellAt(coordinates: Coordinates) {
+    if (coordinates.getX() < 0 || coordinates.getY() < 0) {
       return Cell.dead()
     }
 
-    if (i >= this.board.length || j >= this.board.length) {
+    if (coordinates.getX() >= this.board.length || coordinates.getY() >= this.board.length) {
       return Cell.dead()
     }
 
-    return this.board[i][j]
+    return this.board[coordinates.getX()][coordinates.getY()]
   }
 }
