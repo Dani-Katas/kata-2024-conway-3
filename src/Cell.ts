@@ -24,7 +24,7 @@ export class Cell {
   }
 
   nextGeneration(neighbors: Neighbors) {
-    if (this.alive && neighbors.aliveAmount() === 2) {
+    if (this.alive && (neighbors.aliveAmount() === 2 || neighbors.aliveAmount() === 3)) {
       return Cell.alive()
     }
 

@@ -37,5 +37,21 @@ describe("Cell", () => {
 
       expect(nextCell.isDead()).toBe(true)
     })
+
+    it("remains alive with 2 neighbors", () => {
+      const neighbors = Neighbors.withAliveAmount(2)
+
+      const nextCell = aliveCell.nextGeneration(neighbors)
+
+      expect(nextCell.isAlive()).toBe(true)
+    })
+
+    it("remains alive with 3 neighbors", () => {
+      const neighbors = Neighbors.withAliveAmount(3)
+
+      const nextCell = aliveCell.nextGeneration(neighbors)
+
+      expect(nextCell.isAlive()).toBe(true)
+    })
   })
 })
