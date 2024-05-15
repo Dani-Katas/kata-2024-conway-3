@@ -53,5 +53,21 @@ describe("Cell", () => {
 
       expect(nextCell.isAlive()).toBe(true)
     })
+
+    it("dies with 4 neighbors because of overcrowding", () => {
+      const neighbors = Neighbors.withAliveAmount(4)
+
+      const nextCell = aliveCell.nextGeneration(neighbors)
+
+      expect(nextCell.isDead()).toBe(true)
+    })
+
+    it("dies with 8 neighbors because of overcrowding", () => {
+      const neighbors = Neighbors.withAliveAmount(8)
+
+      const nextCell = aliveCell.nextGeneration(neighbors)
+
+      expect(nextCell.isDead()).toBe(true)
+    })
   })
 })
