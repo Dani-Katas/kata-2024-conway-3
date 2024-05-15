@@ -1,45 +1,57 @@
 import { Neighbors } from "./Neighbors.js"
 
-export class Cell {
-  constructor(private readonly alive: boolean) {}
-
+export abstract class Cell {
   static alive() {
-    return new Cell(true)
+    return new AliveCell()
   }
 
   static dead() {
-    return new Cell(false)
+    return new DeadCell()
   }
 
   static create(isAlive: boolean): Cell {
-    return new Cell(isAlive)
+    return isAlive ? this.alive() : this.dead()
   }
 
-  isAlive() {
-    return this.alive
-  }
+  abstract isAlive(): boolean
 
-  isDead() {
-    return !this.alive
-  }
+  abstract isDead(): boolean
 
-  nextGeneration(neighbors: Neighbors): Cell {
-    if (this.isAlive()) {
-      if (neighbors.hasUnderpopulation() || neighbors.isOvercrowded()) {
-        return Cell.dead()
-      } else {
-        return Cell.alive()
-      }
+  abstract nextGeneration(neighbors: Neighbors): Cell
+}
+
+class AliveCell extends Cell {
+  override nextGeneration(neighbors: Neighbors): Cell {
+    if (neighbors.hasUnderpopulation() || neighbors.isOvercrowded()) {
+      return Cell.dead()
+    } else {
+      return Cell.alive()
     }
+  }
 
-    if (this.isDead()) {
-      if (neighbors.hasThreeAlive()) {
-        return Cell.alive()
-      } else {
-        return Cell.dead()
-      }
+  override isAlive(): boolean {
+    return true
+  }
+
+  override isDead(): boolean {
+    return false
+  }
+}
+
+class DeadCell extends Cell {
+  override nextGeneration(neighbors: Neighbors): Cell {
+    if (neighbors.hasThreeAlive()) {
+      return Cell.alive()
+    } else {
+      return Cell.dead()
     }
+  }
 
-    return Cell.dead()
+  override isAlive(): boolean {
+    return false
+  }
+
+  override isDead(): boolean {
+    return true
   }
 }
