@@ -9,12 +9,6 @@ export class GameOfLife {
   }
 
   public nextGen(): void {
-    this.board = this.board.map((cell, neighbors) => {
-      if (neighbors.deadAmount() === 6 && cell.isAlive()) {
-        return Cell.alive()
-      }
-
-      return Cell.dead()
-    })
+    this.board = this.board.map((cell, neighbors) => cell.nextGeneration(neighbors))
   }
 }

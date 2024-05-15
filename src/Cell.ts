@@ -1,5 +1,7 @@
+import { Neighbors } from "./Neighbors.js"
+
 export class Cell {
-  constructor(private readonly _isAlive: boolean) {}
+  constructor(private readonly alive: boolean) {}
 
   static alive() {
     return new Cell(true)
@@ -14,10 +16,18 @@ export class Cell {
   }
 
   isAlive() {
-    return this._isAlive
+    return this.alive
   }
 
   isDead() {
-    return !this._isAlive
+    return !this.alive
+  }
+
+  nextGeneration(neighbors: Neighbors) {
+    if (this.alive && neighbors.aliveAmount() === 2) {
+      return Cell.alive()
+    }
+
+    return Cell.dead()
   }
 }
