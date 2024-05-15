@@ -11,4 +11,8 @@ export class GameOfLife {
   public nextGen(): void {
     this.board = this.board.map((cell, neighbors) => cell.nextGeneration(neighbors))
   }
+
+  public toString() {
+    return this.board.toString()
+  }
 }
