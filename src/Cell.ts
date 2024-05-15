@@ -28,6 +28,10 @@ export class Cell {
       return Cell.alive()
     }
 
+    if (this.isDead() && neighbors.aliveAmount() === 3) {
+      return Cell.alive()
+    }
+
     return Cell.dead()
   }
 }

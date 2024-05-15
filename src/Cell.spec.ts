@@ -70,4 +70,32 @@ describe("Cell", () => {
       expect(nextCell.isDead()).toBe(true)
     })
   })
+
+  describe("when is dead", () => {
+    const deadCell = Cell.dead()
+
+    it("revives with exactly 3 neighbors", () => {
+      const neighbors = Neighbors.withAliveAmount(3)
+
+      const nextCell = deadCell.nextGeneration(neighbors)
+
+      expect(nextCell.isAlive()).toBe(true)
+    })
+
+    it("remains dead with 2 neighbors", () => {
+      const neighbors = Neighbors.withAliveAmount(2)
+
+      const nextCell = deadCell.nextGeneration(neighbors)
+
+      expect(nextCell.isDead()).toBe(true)
+    })
+
+    it("remains dead with 4 neighbors", () => {
+      const neighbors = Neighbors.withAliveAmount(4)
+
+      const nextCell = deadCell.nextGeneration(neighbors)
+
+      expect(nextCell.isDead()).toBe(true)
+    })
+  })
 })

@@ -31,7 +31,7 @@ describe("GameOfLife", () => {
 
     expect(gameOfLife).toEqual(
       new GameOfLife([
-        [true, false, false],
+        [true, true, false],
         [true, true, false],
         [false, false, false],
       ]),
