@@ -19,6 +19,20 @@ describe("Cell", () => {
     expect(isAlive).toBe(false)
   })
 
+  it("can be compared by not equal", () => {
+    const dead = Cell.dead()
+    const alive = Cell.alive()
+
+    expect(dead).not.toEqual(alive)
+  })
+
+  it("can be compared by equal", () => {
+    const dead1 = Cell.dead()
+    const dead2 = Cell.dead()
+
+    expect(dead1).toEqual(dead2)
+  })
+
   describe("when is alive", () => {
     const aliveCell = Cell.alive()
 

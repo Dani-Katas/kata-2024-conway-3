@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest"
+import { describe, expect, it } from "vitest"
 import { GameOfLife } from "./GameOfLife.js"
 
 describe("GameOfLife", () => {
@@ -49,9 +49,9 @@ describe("GameOfLife", () => {
 
     expect(gameOfLife).toEqual(
       new GameOfLife([
-        [true, true, true],
-        [true, true, true],
-        [true, true, true],
+        [true, true, false],
+        [true, true, false],
+        [false, false, false],
       ]),
     )
   })

@@ -23,6 +23,8 @@ export abstract class Cell {
 }
 
 class AliveCell extends Cell {
+  private readonly type = "ALIVE"
+
   override nextGeneration(neighbors: Neighbors): Cell {
     if (neighbors.hasUnderpopulation()) return Cell.dead()
 
@@ -45,6 +47,8 @@ class AliveCell extends Cell {
 }
 
 class DeadCell extends Cell {
+  private readonly type = "DEAD"
+
   override nextGeneration(neighbors: Neighbors): Cell {
     if (neighbors.hasThreeAlive()) return Cell.alive()
 
