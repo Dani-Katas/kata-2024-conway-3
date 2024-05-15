@@ -55,4 +55,16 @@ describe("GameOfLife", () => {
       ]),
     )
   })
+
+  it("can be transformed to string", () => {
+    const gameOfLife = new GameOfLife([
+      [false, true, true],
+      [true, false, true],
+      [true, true, false],
+    ])
+
+    const result = gameOfLife.toString()
+
+    expect(result).toBe(" ◼◼\n◼ ◼\n◼◼ ")
+  })
 })

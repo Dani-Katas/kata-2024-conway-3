@@ -37,7 +37,7 @@ describe("Neighbors", () => {
       Cell.dead(),
     ]
 
-    expect(() => new Neighbors(cells)).toThrow()
+    expect(() => new Neighbors(cells)).toThrowError("There bust be 8 neighbors")
   })
 
   it("counts the amount of dead cells", () => {

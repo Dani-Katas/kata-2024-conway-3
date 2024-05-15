@@ -1,6 +1,9 @@
 import { Neighbors } from "./Neighbors.js"
 
 export abstract class Cell {
+  protected static aliveType = Symbol()
+  protected static deadType = Symbol()
+
   static alive() {
     return new AliveCell()
   }
@@ -23,7 +26,7 @@ export abstract class Cell {
 }
 
 class AliveCell extends Cell {
-  private readonly type = "ALIVE"
+  private readonly type = Cell.aliveType
 
   override nextGeneration(neighbors: Neighbors): Cell {
     if (neighbors.hasUnderpopulation()) return Cell.dead()
@@ -47,7 +50,7 @@ class AliveCell extends Cell {
 }
 
 class DeadCell extends Cell {
-  private readonly type = "DEAD"
+  private readonly type = Cell.deadType
 
   override nextGeneration(neighbors: Neighbors): Cell {
     if (neighbors.hasThreeAlive()) return Cell.alive()

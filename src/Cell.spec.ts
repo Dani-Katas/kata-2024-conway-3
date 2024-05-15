@@ -36,6 +36,10 @@ describe("Cell", () => {
   describe("when is alive", () => {
     const aliveCell = Cell.alive()
 
+    it("is not dead", () => {
+      expect(aliveCell.isDead()).toBe(false)
+    })
+
     it("dies with 0 neighbors because of under-population", () => {
       const neighbors = Neighbors.allDead()
 
@@ -87,6 +91,10 @@ describe("Cell", () => {
 
   describe("when is dead", () => {
     const deadCell = Cell.dead()
+
+    it("is dead", () => {
+      expect(deadCell.isDead()).toBe(true)
+    })
 
     it("revives with exactly 3 neighbors", () => {
       const neighbors = Neighbors.withAliveAmount(3)
