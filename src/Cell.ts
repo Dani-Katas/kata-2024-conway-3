@@ -18,6 +18,8 @@ export abstract class Cell {
   abstract isDead(): boolean
 
   abstract nextGeneration(neighbors: Neighbors): Cell
+
+  abstract toString(): string
 }
 
 class AliveCell extends Cell {
@@ -36,6 +38,10 @@ class AliveCell extends Cell {
   override isDead(): boolean {
     return false
   }
+
+  override toString(): string {
+    return "◼"
+  }
 }
 
 class DeadCell extends Cell {
@@ -51,5 +57,9 @@ class DeadCell extends Cell {
 
   override isDead(): boolean {
     return true
+  }
+
+  override toString(): string {
+    return " "
   }
 }

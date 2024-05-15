@@ -21,4 +21,8 @@ export class Board {
 
     return new Neighbors(cells)
   }
+
+  toString(): string {
+    return this.cells.map((row) => row.join("")).join("\n")
+  }
 }

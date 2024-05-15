@@ -90,5 +90,17 @@ describe("Board", () => {
 
       expect(neighbors.deadAmount()).toBe(5)
     })
+
+    it("can be transformed to string", () => {
+      const board = new Board([
+        [Cell.dead(), Cell.alive(), Cell.alive()],
+        [Cell.alive(), Cell.dead(), Cell.alive()],
+        [Cell.alive(), Cell.alive(), Cell.dead()],
+      ])
+
+      const result = board.toString()
+
+      expect(result).toBe(" ◼◼\n◼ ◼\n◼◼ ")
+    })
   })
 })
