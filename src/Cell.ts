@@ -23,13 +23,21 @@ export class Cell {
     return !this.alive
   }
 
-  nextGeneration(neighbors: Neighbors) {
-    if (this.alive && (neighbors.aliveAmount() === 2 || neighbors.aliveAmount() === 3)) {
-      return Cell.alive()
+  nextGeneration(neighbors: Neighbors): Cell {
+    if (this.isAlive()) {
+      if (neighbors.hasUnderpopulation() || neighbors.isOvercrowded()) {
+        return Cell.dead()
+      } else {
+        return Cell.alive()
+      }
     }
 
-    if (this.isDead() && neighbors.aliveAmount() === 3) {
-      return Cell.alive()
+    if (this.isDead()) {
+      if (neighbors.hasThreeAlive()) {
+        return Cell.alive()
+      } else {
+        return Cell.dead()
+      }
     }
 
     return Cell.dead()

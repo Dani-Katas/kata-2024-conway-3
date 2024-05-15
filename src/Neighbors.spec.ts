@@ -49,10 +49,10 @@ describe("Neighbors", () => {
   })
 
   it("can be created with an alive amount", () => {
-    const neighbors = Neighbors.withAliveAmount(1)
+    const neighbors = Neighbors.withAliveAmount(3)
 
-    const aliveAmount = neighbors.aliveAmount()
+    const hasThreeAlive = neighbors.hasThreeAlive()
 
-    expect(aliveAmount).toBe(1)
+    expect(hasThreeAlive).toBe(true)
   })
 })

@@ -42,7 +42,19 @@ export class Neighbors {
     return this.cells.filter((cell) => cell.isDead()).length
   }
 
-  aliveAmount() {
+  private aliveAmount() {
     return 8 - this.deadAmount()
+  }
+
+  hasUnderpopulation() {
+    return this.aliveAmount() < 2
+  }
+
+  isOvercrowded() {
+    return this.aliveAmount() > 3
+  }
+
+  hasThreeAlive() {
+    return this.aliveAmount() === 3
   }
 }
