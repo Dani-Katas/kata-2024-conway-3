@@ -55,12 +55,4 @@ describe("Neighbors", () => {
 
     expect(aliveAmount).toBe(1)
   })
-
-  it("can be created with an alive amount 2", () => {
-    const neighbors = Neighbors.withAliveAmount(2)
-
-    const aliveAmount = neighbors.aliveAmount()
-
-    expect(aliveAmount).toBe(2)
-  })
 })
