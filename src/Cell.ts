@@ -22,11 +22,11 @@ export abstract class Cell {
 
 class AliveCell extends Cell {
   override nextGeneration(neighbors: Neighbors): Cell {
-    if (neighbors.hasUnderpopulation() || neighbors.isOvercrowded()) {
-      return Cell.dead()
-    } else {
-      return Cell.alive()
-    }
+    if (neighbors.hasUnderpopulation()) return Cell.dead()
+
+    if (neighbors.isOvercrowded()) return Cell.dead()
+
+    return this
   }
 
   override isAlive(): boolean {
@@ -40,11 +40,9 @@ class AliveCell extends Cell {
 
 class DeadCell extends Cell {
   override nextGeneration(neighbors: Neighbors): Cell {
-    if (neighbors.hasThreeAlive()) {
-      return Cell.alive()
-    } else {
-      return Cell.dead()
-    }
+    if (neighbors.hasThreeAlive()) return Cell.alive()
+
+    return this
   }
 
   override isAlive(): boolean {
