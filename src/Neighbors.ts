@@ -27,6 +27,11 @@ export class Neighbors {
     ])
   }
 
+  static withAliveAmount(number: number): Neighbors {
+    const cells = new Array(8).fill(0).map((_, i) => (i < number ? Cell.alive() : Cell.dead()))
+    return new Neighbors(cells)
+  }
+
   constructor(private readonly cells: Cell[]) {
     if (cells.length !== 8) {
       throw Error("There bust be 8 neighbors")
